@@ -52,6 +52,16 @@
     text-decoration: none;
 }
 
-/* .login-btn {
-    width: ;
-} */
+.admin-btn {
+  cursor: pointer;  
+}
+
+.admin-btn:hover {
+  color: rgba(0, 0, 0, .5);
+} 
+
+@media(min-width: 768px) {
+    .title {
+        color: white;
+    }
+}
