@@ -16,6 +16,14 @@
     box-shadow: none;
 }
 
+.home-img {
+    background-image: url("../resources/login_img.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 500px;
+    width: 100%;
+}
+
 .bg_overlay {
     position: absolute;
     width: 100%;
@@ -45,6 +53,18 @@
 #rm {
     height: 15px;
     width: 15px;
+}
+
+.links-login a{
+    cursor: pointer;
+    font-size: 24px;
+    text-decoration: none;
+    transition: all .25s;
+}
+
+.links-login a:hover {
+    font-size: 26px;
+    color: #000;
 }
 
 .forgot_pwd a {
