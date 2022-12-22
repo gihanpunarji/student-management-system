@@ -23,21 +23,21 @@
     <div class="container">
         <div class="col-12">
             <div class="row">
-                <div class="col-12">
+                <div class="col-10">
                     <div class="main-form">
                         <!-- Logo -->
                         <div class="logo d-flex justify-content-center align-items-center mt-2">
                             <img src="resources/user.png">
                         </div>
                         <!-- Form Group -->
-                        <div class="form-groups mt-5">
-                            <div class="form-group ms-4 me-4">
-                                <input type="email" name="email" class="form-control " type="text"
+                        <div class="form-groups mt-5 w-100">
+                            <div class="ms-4 me-4">
+                                <input type="email" name="email" class="form-control w-100" type="text"
                                     placeholder="Enter Email" required="" aria-required="true">
                             </div>
 
-                            <div class="form-group ms-4 mt-4 me-4">
-                                <input type="password" name="password" class="form-control " type="text"
+                            <div class="ms-4 mt-4 me-4">
+                                <input type="password" name="password" class="form-control w-100" type="text"
                                     placeholder="Enter Password" required="" aria-required="true">
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <!-- Register Text -->
-                        <div class="reg-text mt-4 text-end me-4">
+                        <div class="reg-text mt-4 ms-4">
                             <span>If you login for the first time <a href="student_signup.php">click here</a></span>
                         </div>
                     </div>
