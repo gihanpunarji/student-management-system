@@ -85,8 +85,11 @@
                                 </a>
 
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Manage Academic Officers</a></li>
-                                    <li><a class="dropdown-item" href="#">Add Academic )fficers</a></li>
+                                    <li><a class="dropdown-item" href="manage_academic_officer.php">Manage Academic
+                                            Officers</a></li>
+                                    <li><a class="dropdown-item" href="add_academic_officer.php">Add Academic
+                                            Officers</a>
+                                    </li>
                                 </ul>
                             </div>
                             <i class="fa-regular fa-user"></i>
