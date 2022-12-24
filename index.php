@@ -10,6 +10,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body>
@@ -17,7 +18,7 @@
     include "db/connection.php";
     ?>
 
-    <div class="container">
+    <div class="container vh-100">
         <h1 class="text-center mt-3">Welcome to the Student Management System</h1>
         <div class="col-12">
             <div class="row mt-5">
@@ -57,6 +58,10 @@
             </div>
         </div>
     </div>
+
+    <?php 
+    include "components/footer.php";
+    ?>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
