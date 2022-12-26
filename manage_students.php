@@ -29,15 +29,15 @@
             <div class="row">
                 <div class="col-12 mt-5">
                     <div class="d-flex justify-content-between">
-                        <div class="col-11 col-md-8 d-flex justify-content-between">
+                        <div class="col-12 col-md-8 d-flex justify-content-between">
                             <span class="admin-bar">Id#</span>
                             <span class="admin-bar align-self-start">Name</span>
                             <span class="admin-bar">Email</span>
                             <span class="admin-bar">Mobile</span>
+                            <span>Payment</span>
                         </div>
                         <div class="col-2 col-md-2 d-none d-md-block">
                             <span>Status</span>
-
                         </div>
                     </div>
                 </div>
@@ -53,6 +53,7 @@
                             <span>ravindu sathsara</span>
                             <span>ravi.123@gmail.com</span>
                             <span>071 5020884</span>
+                            <span>Trial</span>
                         </div>
                         <div class="col-12 col-md-2">
                             <div class="form-check form-switch">

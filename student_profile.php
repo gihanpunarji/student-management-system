@@ -5,9 +5,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Profile</title>
+    <title>Student Profile</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="css/background.css">
+
+    <style>
+    .form-control {
+        margin: 0px 10px;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #777878;
+    }
+
+    .form-control:focus {
+        box-shadow: none !important;
+        outline: 0px none;
+    }
+    </style>
 
     <!-- Font Awesome KIT -->
 
@@ -44,7 +58,7 @@
                     <h6>
                         Web Developer and Designer
                     </h6>
-                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                    <p class="proile-rating">Student Ranking : <span>8/10</span></p>
 
                 </div>
             </div>
@@ -55,25 +69,25 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-work">
-                    <p>WORK LINK</p>
-                    <a href="">Website Link</a><br />
-                    <a href="">Bootsnipp Profile</a><br />
+                    <p>Additional Deatils</p>
+                    <input type="text" class="form-control mb-2" value="Address">
+                    <span>Grade 10</span> <br>
                     <a href="">Bootply Profile</a>
-                    <p>SKILLS</p>
-                    <a href="">Web Designer</a><br />
-                    <a href="">Web Developer</a><br />
-                    <a href="">WordPress</a><br />
-                    <a href="">WooCommerce</a><br />
-                    <a href="">PHP, .Net</a><br />
+                    <p>Subjects</p>
+                    <a href="">Sinhala</a><br />
+                    <a href="">English</a><br />
+                    <a href="">Commerce</a><br />
+                    <a href="">Commerce</a><br />
+                    <a href="">Science</a><br />
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-6">
-                        <label>Teacher ID</label>
+                        <label>Student ID</label>
                     </div>
                     <div class="col-md-6">
-                        <p>Admin1</p>
+                        <p>Student 1</p>
                     </div>
                 </div>
                 <div class="row">
@@ -107,7 +121,15 @@
                         <label>Role</label>
                     </div>
                     <div class="col-md-6">
-                        <p>Teacher</p>
+                        <p>Student</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Activation</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Paid</p>
                     </div>
                 </div>
             </div>

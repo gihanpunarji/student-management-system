@@ -62,8 +62,9 @@ span {
     font-size: 12px;
 }
 
-.form-control {
-    margin: 0px 10px;
+.form-control,
+.form-select {
+    margin: 0;
     border: none;
     border-radius: 0;
     border-bottom: 1px solid #777878;
@@ -73,10 +74,12 @@ span {
     font-size: 12px;
 }
 
-.form-control:focus {
+.form-control:focus,
+.form-select:focus {
     box-shadow: none !important;
     outline: 0px none ;
 }
+
 
 .edit {
     cursor: pointer;
@@ -103,6 +106,10 @@ span {
 .teacher-details {
     padding: 14px;
     font-size: 20px;
+}
+
+.span {
+    font-size: 12px;
 }
 
 @media(max-width: 412px) {
