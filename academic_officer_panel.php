@@ -24,7 +24,7 @@
                     <h3 class="text-white mt-2 ">SMS</h3>
                     <div class="d-flex align-items-center mt-4">
                         <div class="profile-img me-3">
-                            <img src="resources/user.png" onclick="gotoProfile()">
+                            <img src="resources/user.png" onclick="gotoAccOffProfile()">
                         </div>
                         <div class="d-flex flex-column text-white">
                             <span>Gihan Punarji</span>

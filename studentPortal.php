@@ -1,3 +1,7 @@
+<?php
+require "db/connection.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,16 +23,22 @@
 
     <div class="container-fluid">
         <div class="row">
+            <?php 
+
+            $student_rs = Database::search("SELECT * FROM `student` WHERE `email` = 'gihanpunarji@gmail.com'");
+            $student_data = $student_rs->fetch_assoc();
+
+            ?>
             <div class="col-md-2 vh-100 bg-dark d-none d-md-block">
                 <div class="col-12">
                     <h3 class="text-white mt-2 ">SMS</h3>
                     <div class="d-flex align-items-center mt-4">
                         <div class="profile-img me-3">
-                            <img src="resources/user.png" onclick="gotoProfile()">
+                            <img src="resources/user.png" onclick="gotoStudentProfile()">
                         </div>
                         <div class="d-flex flex-column text-white">
-                            <span>Gihan Punarji</span>
-                            <span class="email">email</span>
+                            <span><?php echo $student_data['first_name'] . " " . $student_data['last_name']; ?></span>
+                            <span class="email"><?php echo $student_data['email']; ?></span>
                         </div>
                     </div>
                     <div class="row dashboard">

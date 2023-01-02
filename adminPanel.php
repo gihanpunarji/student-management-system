@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php 
+
+session_start();
+require "db/connection.php";
+
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +24,13 @@
 
 <body>
 
+    <?php 
+
+$admin_rs = Database::search("SELECT * FROM `admin` WHERE `email` = '" . $_SESSION["admin"]["email"] . "' ");
+$admin_data = $admin_rs->fetch_assoc();
+
+?>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2 vh-100 bg-dark d-none d-md-block">
@@ -27,8 +41,8 @@
                             <img src="resources/user.png" onclick="gotoProfile()">
                         </div>
                         <div class="d-flex flex-column text-white">
-                            <span>Gihan Punarji</span>
-                            <span class="email">email</span>
+                            <span><?php echo $_SESSION["admin"]["first_name"]. " " .  $_SESSION["admin"]["last_name"]  ?></span>
+                            <span class="email"><?php echo $_SESSION["admin"]["email"] ?></span>
                         </div>
                     </div>
                     <div class="row dashboard">

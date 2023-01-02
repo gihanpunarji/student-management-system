@@ -24,22 +24,30 @@
                         </div>
                         <!-- Input Email -->
                         <div class="form-group ms-4 me-4 mt-5 pt-4">
-                            <input type="email" placeholder="Enter your email for varification." class="form-control">
+                            <input type="email" placeholder="Enter your email for varification." id="email_admin"
+                                class="form-control">
                         </div>
                         <!-- Button -->
 
-                        <p class="text-end me-4 mt-2 admin-btn">Verify Email</p>
+                        <p class="text-end me-4 mt-2 admin-btn" onclick="verifyEmail();">Verify Email</p>
+                        <p class="d-none text-danger ms-4 me-2" id="v_text">The Verification code has sent to your
+                            email!
+                            Please
+                            check and
+                            come back..</p>
 
                         <!-- Admin Verification Code -->
 
                         <div class="col-12">
                             <div class="form-group ms-4 me-4 mt-2">
-                                <input disabled type="text" placeholder="Enter verification Code." class="form-control">
+                                <input disabled type="text" placeholder="Enter verification Code." id="v_code"
+                                    class="form-control">
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">
                             <div class="mx-auto d-grid mt-3 col-12">
-                                <button disabled class="btn btn-primary me-4 ms-4">Proceed</button>
+                                <button disabled class="btn btn-primary me-4 ms-4" onclick="loginAdmin();"
+                                    id="proceed_btn">Proceed</button>
                             </div>
                         </div>
                     </div>
@@ -47,6 +55,8 @@
             </div>
         </div>
     </div>
+
+    <script src="js/admin.js"></script>
 </body>
 
 </html>

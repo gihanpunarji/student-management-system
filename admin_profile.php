@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+require "db/connection.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Profile</title>
+    <title><?php echo $_SESSION["admin"]["first_name"]. " " . $_SESSION["admin"]["last_name"] ?> | Profile</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="css/background.css">
 
@@ -39,10 +47,10 @@
             <div class="col-md-6">
                 <div class="profile-head">
                     <h5>
-                        Kshiti Ghelani
+                        <?php echo ucfirst($_SESSION["admin"]["first_name"]). " " . ucfirst($_SESSION["admin"]["last_name"]) ?>
                     </h5>
                     <h6>
-                        Web Developer and Designer
+                        Administrator
                     </h6>
                     <p class="proile-rating">RANKINGS : <span>8/10</span></p>
 
@@ -57,14 +65,14 @@
                 <div class="profile-work">
                     <p>WORK LINK</p>
                     <a href="">Website Link</a><br />
-                    <a href="">Bootsnipp Profile</a><br />
-                    <a href="">Bootply Profile</a>
-                    <p>SKILLS</p>
-                    <a href="">Web Designer</a><br />
-                    <a href="">Web Developer</a><br />
-                    <a href="">WordPress</a><br />
-                    <a href="">WooCommerce</a><br />
-                    <a href="">PHP, .Net</a><br />
+                    <a href="">Facebook Profile</a><br />
+                    <a href="">Linked Profile</a>
+                    <p>Experiece</p>
+                    <a href="">Admin</a><br />
+                    <a href="">Director</a><br />
+                    <a href="">Software Engineer</a><br />
+                    <a href="">Full stack developer</a><br />
+                    <a href="">PHP, .C++</a><br />
                 </div>
             </div>
             <div class="col-md-8">
@@ -73,7 +81,7 @@
                         <label>Admin ID</label>
                     </div>
                     <div class="col-md-6">
-                        <p>Admin1</p>
+                        <p><?php echo $_SESSION["admin"]["admin_id"] ?></p>
                     </div>
                 </div>
                 <div class="row">
@@ -81,7 +89,9 @@
                         <label>Name</label>
                     </div>
                     <div class="col-md-6 d-flex">
-                        <p>Gihan Punarji</p>
+                        <input type="text"
+                            value="<?php echo $_SESSION["admin"]["first_name"] . " " . $_SESSION["admin"]["last_name"] ?>"
+                            class="form-control">
                         &nbsp;<p><i class="fa-solid fa-pencil"></i></p>
                     </div>
                 </div>
@@ -90,7 +100,7 @@
                         <label>Email</label>
                     </div>
                     <div class="col-md-6">
-                        <p>gihanpunarji@gmail.com</p>
+                        <p><?php echo $_SESSION["admin"]["email"] ?></p>
                     </div>
                 </div>
                 <div class="row">
@@ -98,7 +108,7 @@
                         <label>Phone</label>
                     </div>
                     <div class="col-md-6 d-flex">
-                        <p>0717437849</p>
+                        <input type="text" value="<?php echo $_SESSION["admin"]["mobile"] ?>" class="form-control">
                         &nbsp;<p><i class="fa-solid fa-pencil"></i></p>
                     </div>
                 </div>

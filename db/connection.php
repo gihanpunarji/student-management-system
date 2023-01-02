@@ -5,8 +5,19 @@ class Database {
 
     public static function setupConnection () {
         if(!isset(Database::$connection)) {
-            Database::$connection = new mysqli("locahost", "root", "Gamage0212#1122", 'student_management_system', "3306");
+            Database::$connection = new mysqli("localhost", "gihan", "Gamage0212#1122", 'student-management-system');
         } 
+    }
+
+    public static function search ($q) {
+        Database::setupConnection();
+        $query = Database::$connection->query($q);
+        return $query;
+    }
+
+    public static function iud ($q) {
+        Database::setupConnection();
+        Database::$connection->query($q);
     }
 
 }
