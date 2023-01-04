@@ -77,3 +77,31 @@ function sendRequest1 () {
     req.open("GET", "public/academic_officer_signup_process.php?e=" + ac_officer_email.value , true);
     req.send();
 }
+
+// Save Profile
+
+function save_profile () {
+    const f_name = document.getElementById("f_name");
+    const l_name = document.getElementById("l_name");
+    const mobile = document.getElementById("mobile");
+
+    const req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if(req.readyState == 4) {
+            let t = req.responseText;
+            if (t == "success") {
+                window.location.reload();
+            }
+        }
+    } 
+
+    const form = new FormData();
+
+    form.append("f_name", f_name.value);
+    form.append("l_name", l_name.value);
+    form.append("mobile", mobile.value);
+
+    req.open("POST", "public/saveProfileProcessAdmin.php", true);
+    req.send(form);
+}

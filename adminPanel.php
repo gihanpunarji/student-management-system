@@ -32,6 +32,9 @@ if(!isset($_SESSION["admin"])) {
 $admin_rs = Database::search("SELECT * FROM `admin` WHERE `email` = '" . $_SESSION["admin"]["email"] . "' ");
 $admin_data = $admin_rs->fetch_assoc();
 
+$ac_officer_rs = Database::search("SELECT * FROM `academic_officer` ");
+$ac_officer_num = $ac_officer_rs->num_rows;
+
 ?>
 
     <div class="container-fluid">
@@ -39,12 +42,15 @@ $admin_data = $admin_rs->fetch_assoc();
             <div class="col-md-2 vh-100 bg-dark d-none d-md-block">
                 <div class="col-12">
                     <h3 class="text-white mt-2 ">SMS</h3>
-                    <div class="d-flex align-items-center mt-4">
+                    <div class="img-container">
                         <div class="profile-img me-3">
                             <img src="resources/user.png" onclick="gotoProfile()">
                         </div>
+                    </div>
+                    <div class="d-flex align-items-center mt-4">
                         <div class="d-flex flex-column text-white">
-                            <span><?php echo $_SESSION["admin"]["first_name"]. " " .  $_SESSION["admin"]["last_name"]  ?></span>
+                            <span class="link"
+                                onclick="gotoProfile();"><?php echo $_SESSION["admin"]["first_name"]. " " .  $_SESSION["admin"]["last_name"]  ?></span>
                             <span class="email"><?php echo $_SESSION["admin"]["email"] ?></span>
                         </div>
                     </div>
@@ -141,7 +147,7 @@ $admin_data = $admin_rs->fetch_assoc();
                                 </div>
                                 <div class="col-6 col-md-3">
                                     <span class="ps-3">Academic Officers</span><br>
-                                    <span class="ps-3">100</span><br>
+                                    <span class="ps-3"><?php echo $ac_officer_num ?></span><br>
                                     <a class="ms-3 manage" href="#">Manage Academic Officers</a>
                                 </div>
                                 <div class="col-6 col-md-3">
@@ -231,7 +237,7 @@ $admin_data = $admin_rs->fetch_assoc();
                                     </div>
                                     <div class="row">
                                         <div class="col-12 text-start text-md-center ms-4 ms-md-1">
-                                            <span>Admins : 2</span><br>
+                                            <span>Admins : <?php echo $admin_data["admin_id"] ?></span><br>
                                             <span>Staus : Admin</span><br>
                                             <span class="edit">Edit</span>&nbsp;<i class="fa-solid fa-pencil"></i>
                                         </div>
@@ -257,8 +263,12 @@ $admin_data = $admin_rs->fetch_assoc();
                                         <span class="admin-bar"></span>
                                     </div>
                                     <div class="col-11 d-flex justify-content-between ms-3 me-3 mt-3 mb-3">
-                                        <span>Admin 01</span>
-                                        <span>Gihan Punarji</span>
+                                        <span>Admin <?php if($admin_data["admin_id"] < 10) {
+                                            echo "0".  $admin_data["admin_id"];
+                                        } else {
+                                            echo $admin_data["admin_id"];
+                                        } ?></span>
+                                        <span><?php echo ucfirst($admin_data["first_name"]). " " . ucfirst($admin_data["last_name"]) ?></span>
                                         <span>Active</span>
                                         <span><i class="fa-solid fa-xmark"></i></span>
                                     </div>
