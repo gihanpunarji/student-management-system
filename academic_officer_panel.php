@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+require "db/connection.php";
+
+if(isset($_SESSION["ac_officer"])) {
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,13 +30,19 @@
             <div class="col-md-2 vh-100 bg-dark d-none d-md-block">
                 <div class="col-12">
                     <h3 class="text-white mt-2 ">SMS</h3>
-                    <div class="d-flex align-items-center mt-4">
+                    <div class="img-container">
                         <div class="profile-img me-3">
                             <img src="resources/user.png" onclick="gotoAccOffProfile()">
                         </div>
+                    </div>
+                    <div class="d-flex align-items-center mt-4">
                         <div class="d-flex flex-column text-white">
-                            <span>Gihan Punarji</span>
-                            <span class="email">email</span>
+                            <span onclick="gotoAccOffProfile()" class="link"><?php if (empty($_SESSION["ac_officer"]["first_name"]) || empty($_SESSION["ac_officer"]["first_name"]) ) {
+                                echo $_SESSION["ac_officer"]["user_name"];
+                            } else {
+                                echo $_SESSION["ac_officer"]["first_name"] . " " . $_SESSION["ac_officer"]["last_name"];
+                            } ?></span>
+                            <span class="email"><?php echo $_SESSION["ac_officer"]["email"] ?></span>
                         </div>
                     </div>
                     <div class="row dashboard">
@@ -53,7 +67,11 @@
             <div class="col-md-10 panel">
                 <div class="row">
                     <div class="col-12 d-flex justify-content-between">
-                        <h3 class="welcome">Welcome Academic Officer, Gihan Punarji</h3>
+                        <h3 class="welcome">Welcome Academic Officer, <?php if (empty($_SESSION["ac_officer"]["first_name"]) || empty($_SESSION["ac_officer"]["first_name"]) ) {
+                                echo $_SESSION["ac_officer"]["user_name"];
+                            } else {
+                                echo $_SESSION["ac_officer"]["first_name"] . " " . $_SESSION["ac_officer"]["last_name"];
+                            } ?></h3>
                         <div class="btn btn-sm btn-secondary mt-1 mb-1">Log Out</div>
                     </div>
                     <hr>
@@ -136,7 +154,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 text-start text-md-center ms-4 ms-md-1">
-                                            <span>Academic Officer : 2</span><br>
+                                            <span>Academic Officer :
+                                                <?php echo $_SESSION["ac_officer"]["id"] ?></span><br>
                                             <span>Staus : Acc Officer</span><br>
                                             <span class="edit">Edit</span>&nbsp;<i class="fa-solid fa-pencil"></i>
                                         </div>
@@ -181,8 +200,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
-    <script src="js/admin.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/acc_officer.js"></script>
 
 </body>
 
 </html>
+<?php
+} else {
+    header("index.php");
+}
+
+?>

@@ -1,14 +1,14 @@
 <?php  
 
-require "db/connection.php";
+require "../db/connection.php";
 
-require "SMTP.php";
-require "PHPMailer.php";
-require "Exception.php";
+require "../SMTP.php";
+require "../PHPMailer.php";
+require "../Exception.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-if(isset($_POST["email"])) {
+if("" != $_POST["email"]) {
     $email = $_POST["email"];
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "Enter a valid email address";
@@ -25,18 +25,18 @@ if(isset($_POST["email"])) {
             $mail->IsSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'gihanpunarji@gmail.com';
-            $mail->Password = 'knuwzevdqlfjrdev';
+            $mail->Username = 'geniousgaming2212@gmail.com';
+            $mail->Password = 'iahvmfhrcdwbnjmy';
             $mail->SMTPSecure = 'ssl';
             $mail->Port = 465;
-            $mail->setFrom('gihanpunarji@gmail.com', 'Login Code');
-            $mail->addReplyTo('gihanpunarji@gmail.com', 'Login Code');
+            $mail->setFrom('geniousgaming2212@gmail.com', 'Login Code');
+            $mail->addReplyTo('geniousgaming2212@gmail.com', 'Login Code');
             $mail->addAddress($email);
             $mail->isHTML(true);
             $mail->Subject = 'Login code for the Admin to use the system';
             $bodyContent = ' 
 
-<body style="background-color:grey">
+<body style="background-color:#d5f4e6">
 	<table align="center" border="0" cellpadding="0" cellspacing="0"
 		width="550" bgcolor="white" style="border:2px solid black">
 		<tbody>
@@ -110,7 +110,10 @@ if(isset($_POST["email"])) {
             } else {
                 echo "success";
             }
-        }
+
+        } else {
+			echo "No user Found!";
+		}
     }   
 } else {
     echo "Please enter your email";

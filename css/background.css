@@ -106,3 +106,16 @@ body{
     box-shadow: none !important;
     outline: 0px none ;
 }
+
+.cp {
+    float: right;
+}
+
+.edit {
+    cursor: pointer;
+    color: #101010;
+}
+
+.edit:hover {
+    color: #777878;
+}

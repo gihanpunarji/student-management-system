@@ -15,9 +15,10 @@ span {
     color: white;
 }
 
-.profile-img {
-    height: 50px;
-    width: 50px;
+.img-container {
+    height: 90px;
+    width: 90px;
+    margin: auto;
     cursor: pointer;
 } 
 
@@ -111,6 +112,10 @@ span {
 
 .span {
     font-size: 12px;
+}
+
+.link {
+    cursor: pointer;
 }
 
 @media(max-width: 412px) {

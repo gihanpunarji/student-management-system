@@ -30,16 +30,20 @@
                             <input id="password" type="password" placeholder="Enter your password."
                                 class="form-control">
                         </div>
+                        <div class="form-group ms-4 me-4 mt-2">
+                            <input id="l_code" type="text" placeholder="Enter varification code." class="form-control">
+                        </div>
 
                         <!-- Button -->
 
                         <div class="d-flex justify-content-center">
                             <div class="mx-auto d-grid mt-3 col-12">
-                                <button class="btn btn-primary me-4 ms-4" onclick="login_ac_officer();">Proceed</button>
+                                <button class="btn btn-primary me-4 ms-4"
+                                    onclick="signup_ac_officer();">Proceed</button>
                             </div>
                         </div>
-                        <div class="col-12 ms-4 me-4">
-                            <a href="academic_officer_signup.php">Login for the first time.</a>
+                        <div class="col-12 ms-4">
+                            <a href="academic_officer_login.php">Already a user.</a>
                         </div>
                     </div>
                 </div>

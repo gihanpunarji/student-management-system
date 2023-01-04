@@ -1,23 +1,3 @@
-function gotoProfile () {
-    window.location = "admin_profile.php";
-}
-function gotoStudentProfile () {
-    window.location = "student_profile.php";
-}
-function gotoAccOffProfile () {
-    window.location = "academic_offficer_profile.php";
-}
-function gotoTeacherProfile () {
-    window.location = "teacher_profile.php";
-}
-
-function manageTeachersInfo () {
-    window.location = "manage_teachers_info.php";
-}
-
-function manageAcademicOfficerInfo () {
-    window.location = "manage_academic_officer_info.php";
-}
 
 // Send Verification Code for admin
 
@@ -32,10 +12,11 @@ function verifyEmail () {
     req.onreadystatechange = function() {
        if( req.readyState == 4 ) {
         let t = req.responseText;
+        alert(t);
             if (t == "success") {
                 vText.classList.remove("d-none");
                 vCode.removeAttribute("disabled");
-                 Pbtn.removeAttribute("disabled");
+                Pbtn.removeAttribute("disabled");
             }
        }
     }
@@ -44,7 +25,7 @@ function verifyEmail () {
 
     form.append("email", email.value);
 
-    req.open("POST", "sendCodeForAdminLogin.php", true);
+    req.open("POST", "public/sendCodeForAdminLogin.php", true);
     req.send(form);
 }
 
@@ -59,6 +40,7 @@ function loginAdmin () {
     req.onreadystatechange = function() {
        if( req.readyState == 4 ) {
         let t = req.responseText;
+        alert(t);
             if (t == "success") {
                 window.location = "adminPanel.php";
             }
@@ -70,6 +52,28 @@ function loginAdmin () {
     form.append("v_code", vCode.value);
     form.append("email", email.value);
 
-    req.open("POST", "loginAdminProcess.php", true);
+    req.open("POST", "public/loginAdminProcess.php", true);
     req.send(form);
+}
+
+// Send Req to academic officer
+
+function sendRequest1 () {
+    const ac_officer_email = document.getElementById("ac_officer_email");
+
+    const req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if(req.readyState == 4) {
+            let t = req.responseText;
+            alert(t);
+            if (t == "success") {
+                alert("Request sent successfully");
+                window.location.reload();
+            }
+        }
+    }
+
+    req.open("GET", "public/academic_officer_signup_process.php?e=" + ac_officer_email.value , true);
+    req.send();
 }

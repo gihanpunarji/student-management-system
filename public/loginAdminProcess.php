@@ -2,9 +2,9 @@
 
 session_start();
 
-require "db/connection.php";
+require "../db/connection.php";
 
-if(isset($_POST["v_code"])) {
+if(!empty($_POST["v_code"])) {
     $vCode = $_POST["v_code"];
     $email = $_POST["email"];
 
