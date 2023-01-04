@@ -78,6 +78,28 @@ function sendRequest1 () {
     req.send();
 }
 
+// Send Req to teacher
+
+function sendRequest2 () {
+    const teacher_email = document.getElementById("teacher_email");
+
+    const req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if(req.readyState == 4) {
+            let t = req.responseText;
+            alert(t);
+            if (t == "success") {
+                alert("Request sent successfully");
+                window.location.reload();
+            }
+        }
+    }
+
+    req.open("GET", "public/teacher_signup_process.php?e=" + teacher_email.value , true);
+    req.send();
+}
+
 // Save Profile
 
 function save_profile () {

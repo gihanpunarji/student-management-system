@@ -69,7 +69,7 @@ if("" != $_GET["e"]) {
 					<p style="font-weight: bolder;font-size: 42px;
 							letter-spacing: 0.025em;
 							color:black;">
-						Hello Admin!
+						Hello Academic Officer!
 						<br> Your Verification Code
 					</p>
 				</td>

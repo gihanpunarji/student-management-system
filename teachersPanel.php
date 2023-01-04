@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+
+require "db/connection.php";
+
+if(isset($_SESSION["teacher"])) {
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,13 +31,19 @@
             <div class="col-md-2 vh-100 bg-dark d-none d-md-block">
                 <div class="col-12">
                     <h3 class="text-white mt-2 ">SMS</h3>
-                    <div class="d-flex align-items-center mt-4">
+                    <div class="img-container">
                         <div class="profile-img me-3">
                             <img src="resources/user.png" onclick="gotoTeacherProfile()">
                         </div>
+                    </div>
+                    <div class="d-flex align-items-center mt-4">
                         <div class="d-flex flex-column text-white">
-                            <span>Gihan Punarji</span>
-                            <span class="email">email</span>
+                            <span> <?php if (empty($_SESSION["teacher"]["first_name"]) || empty($_SESSION["teacher"]["first_name"]) ) {
+                                echo $_SESSION["teacher"]["user_name"];
+                            } else {
+                                echo $_SESSION["teacher"]["first_name"] . " " . $_SESSION["teacher"]["last_name"];
+                            } ?></span>
+                            <span class="email"><?php echo $_SESSION["teacher"]["email"] ?></span>
                         </div>
                     </div>
                     <div class="row dashboard">
@@ -92,14 +107,26 @@
                                     <span class="ps-3">100</span><br>
 
                                 </div>
+                                <?php 
+
+                                $ac_rs = Database::search("SELECT * FROM `academic_officer`");
+                                $ac_num = $ac_rs->num_rows;
+
+                                ?>
                                 <div class="col-6 col-md-3">
                                     <span class="ps-3">Academic Officers</span><br>
-                                    <span class="ps-3">100</span><br>
+                                    <span class="ps-3"><?php echo $ac_num ?></span><br>
 
                                 </div>
+                                <?php 
+
+                                $teacher_rs1 = Database::search("SELECT * FROM `teacher`");
+                                $teacher_num1 = $ac_rs->num_rows;
+
+                                ?>
                                 <div class="col-6 col-md-3">
                                     <span class="ps-3">Total Teachers</span><br>
-                                    <span class="ps-3">100</span><br>
+                                    <span class="ps-3"><?php echo $teacher_num1 ?></span><br>
 
                                 </div>
                                 <div class="col-6 col-md-3">
@@ -180,10 +207,16 @@
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <?php
+                                        $teacher_rs2 = Database::search("SELECT * FROM `teacher` WHERE `email` = '" . $_SESSION["teacher"]["email"] . "' ");
+                                        $teacher_data2 = $teacher_rs2->fetch_assoc();
+                                        ?>
                                         <div class="col-12 text-start text-md-center ms-4 ms-md-1">
-                                            <span>Teacher : 2</span><br>
+                                            <span>Teacher : <?php echo $teacher_data["id"] ?></span><br>
                                             <span>Staus : Teacher</span><br>
-                                            <span class="edit">Verified</span>&nbsp;<i class="fa-solid fa-check"></i>
+                                            <span class="edit"><?php if($teacher_data2["verified"] == 1) {
+                                                echo "Verified";
+                                            } ?></span>&nbsp;<i class="fa-solid fa-check"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -231,3 +264,8 @@
 </body>
 
 </html>
+
+<?php
+}
+
+?>

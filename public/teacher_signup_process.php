@@ -19,13 +19,13 @@ if(!empty($_GET["e"])) {
         echo "Enter a valid email address";
 
     } else {
-		$rs = Database::search("SELECT * FROM `academic_officer` WHERE `email` = '" . $email . "' ");
-		$rs_num = $rs->num_rows;
+		$rs = Database::search("SELECT * FROM `teacher` WHERE `email` = '" . $email . "' ");
+        $rs_num = $rs->num_rows;
 		if ($rs_num == 1) {
 			echo "Already has sent a request";
 		} else {
-			Database::iud("INSERT INTO `academic_officer` (`email`,`user_name`, `password`, `login_code`, `role`) 
-			VALUES ('" . $email . "', '" .$username . "', '" . $password . "', '" . $l_code . "', 'Academic Officer')");
+			Database::iud("INSERT INTO `teacher` (`email`,`user_name`, `password`, `login_code`, `role`, `verified`) 
+			VALUES ('" . $email . "', '" .$username . "', '" . $password . "', '" . $l_code . "', 'Teacher', '0')");
 
 			$mail = new PHPMailer;
 			$mail->IsSMTP();
@@ -39,7 +39,7 @@ if(!empty($_GET["e"])) {
 			$mail->addReplyTo('geniousgaming2212@gmail.com', 'Login Code');
 			$mail->addAddress($email);
 			$mail->isHTML(true);
-			$mail->Subject = 'Login code for the Academic Officer to use the system';
+			$mail->Subject = 'Login code for the Teacher to use the system';
 			$bodyContent = ' 
 
 		<body style="background-color:#d5f4e6">
@@ -75,7 +75,7 @@ if(!empty($_GET["e"])) {
 							<p style="font-weight: bolder;font-size: 42px;
 									letter-spacing: 0.025em;
 									color:black;">
-								Hello Acadeic Officer!
+								Hello Teacher!
 								<br> Your Verification Code Details
 							</p>
 						</td>
@@ -91,10 +91,10 @@ if(!empty($_GET["e"])) {
 							<h2 style="text-align: left;
 									align-items: center;">
 								Welcome to the student management system 2023.
-								As the Academic Officer you have lot of responsibilities in the system.
+								As the Teacher you have the learning management in the system.
 						</h2>
 						<h4>Your Username is ' .$username. '</h4>
-						<h4>Your Passwor is ' .$password. '</h4>
+						<h4>Your Password is ' .$password. '</h4>
 						<h4>Your Login Code is ' .$l_code. '</h4>
 							<p class="data"
 							style="text-align: justify-all;

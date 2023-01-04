@@ -17,7 +17,7 @@ if(isset($_SESSION["ac_officer"])) {
                     echo $_SESSION["ac_officer"]["user_name"];
                 } else {
                     echo $_SESSION["ac_officer"]["first_name"] . " " . $_SESSION["ac_officer"]["last_name"];
-                } ?></span>
+                } ?>
     </title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="css/background.css">
@@ -56,10 +56,10 @@ if(isset($_SESSION["ac_officer"])) {
                                 echo $_SESSION["ac_officer"]["user_name"];
                             } else {
                                 echo $_SESSION["ac_officer"]["first_name"] . " " . $_SESSION["ac_officer"]["last_name"];
-                            } ?></span>
+                            } ?>
                     </h5>
                     <h6>
-                        Web Developer and Designer
+                        Academic Officer
                     </h6>
                     <p class="proile-rating">RANKINGS : <span>8/10</span></p>
 
