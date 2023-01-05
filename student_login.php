@@ -32,13 +32,13 @@
                         <!-- Form Group -->
                         <div class="form-groups mt-5 w-100">
                             <div class="ms-4 me-4">
-                                <input type="email" name="email" class="form-control w-100" type="text"
-                                    placeholder="Enter Email" required="" aria-required="true">
+                                <input type="email" id="uname" name="email" class="form-control w-100" type="text"
+                                    placeholder="Enter email or username" required aria-required="true">
                             </div>
 
                             <div class="ms-4 mt-4 me-4">
-                                <input type="password" name="password" class="form-control w-100" type="text"
-                                    placeholder="Enter Password" required="" aria-required="true">
+                                <input type="password" id="password" name="password" class="form-control w-100"
+                                    type="text" placeholder="Enter Password" required aria-required="true">
                             </div>
                         </div>
                         <!-- Remember Me And Forgot Password -->
@@ -54,7 +54,7 @@
                         <!-- Button -->
                         <div class="d-flex justify-content-center mt-4">
                             <div class="d-grid col-6 mx-auto">
-                                <button class="login_btn btn btn-primary">
+                                <button class="login_btn btn btn-primary" onclick="studentLogin();">
                                     Login
                                 </button>
                             </div>
@@ -73,6 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
+    <script src="js/student.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-<?php  
+<?php 
 
 require "../db/connection.php";
 
@@ -8,17 +8,12 @@ require "../Exception.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-if("" != $_POST["email"]) {
+if ("" != $_POST["email"]) {
     $email = $_POST["email"];
-    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Enter a valid email address";
-    } else {
-        $rs = Database::search("SELECT * FROM `admin` WHERE `email` = '".$email."' ");
-        $n = $rs->num_rows;
-
-        if($n == 1) {
-            $code = uniqid();
-            Database::iud("UPDATE `admin` SET `verification_code` = '".$code."' WHERE `email` = '".$email."' ");
+    $rs = Database::search("SELECT * FROM `student` WHERE `email` = '" . $_POST["email"] . "' ");
+    if($rs == 1) {
+        $code = random_int(100000, 999999);
+            Database::iud("UPDATE `student` SET `login_code` = '".$code."' WHERE `email` = '".$email."' ");
 
             // email code
             $mail = new PHPMailer;
@@ -69,7 +64,7 @@ if("" != $_POST["email"]) {
 					<p style="font-weight: bolder;font-size: 42px;
 							letter-spacing: 0.025em;
 							color:black;">
-						Hello Admin!
+						Hello Student!
 						<br> Your Verification Code
 					</p>
 				</td>
@@ -85,7 +80,7 @@ if("" != $_POST["email"]) {
 					<h2 style="text-align: left;
 							align-items: center;">
 						Welcome to the student management system 2023.
-                        As the admin you have all the rights to access the system.
+                        You will be able to complete your account in the system.
 				</h2>
                 <h4>Your Login Code is ' .$code. '</h4>
 					<p class="data"
@@ -108,16 +103,14 @@ if("" != $_POST["email"]) {
             if(!$mail->send()) {
                 echo "Verification code send failed";
             } else {
+                echo "Email has sent to your inbox!";
                 echo "success";
             }
-
-        } else {
-			echo "No user Found!";
-		}
-    }   
+    } else {
+        echo "No user found!";
+    }
 } else {
-    echo "Please enter your email";
+    echo "Please enter the email";
 }
-
 
 ?>

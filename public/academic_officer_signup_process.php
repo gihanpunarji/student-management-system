@@ -94,7 +94,7 @@ if(!empty($_GET["e"])) {
 								As the Academic Officer you have lot of responsibilities in the system.
 						</h2>
 						<h4>Your Username is ' .$username. '</h4>
-						<h4>Your Passwor is ' .$password. '</h4>
+						<h4>Your Password is ' .$password. '</h4>
 						<h4>Your Login Code is ' .$l_code. '</h4>
 							<p class="data"
 							style="text-align: justify-all;

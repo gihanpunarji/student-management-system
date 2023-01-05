@@ -130,7 +130,7 @@ if(isset($_SESSION["ac_officer"])) {
                                 </div>
                                 <div class="row mt-3 ms-1 mb-3">
                                     <div class="col-12 col-md-6">
-                                        <div class="btn btn-sm btn-primary">Send Request</div>
+                                        <div class="btn btn-sm btn-primary" onclick="sendRequest();">Send Request</div>
                                     </div>
                                 </div>
                                 <div class="col-11 ms-3">

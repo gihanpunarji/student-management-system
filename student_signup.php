@@ -29,13 +29,19 @@
                         </div>
                         <!-- Input Email -->
                         <div class="form-group ms-4 me-4 mt-5 pt-4">
-                            <input type="email" placeholder="Enter your email for varification." class="form-control">
+                            <input id="email" type="email" placeholder="Enter your email for varification."
+                                class="form-control">
+                        </div>
+                        <p class="text-end me-4 mt-2 admin-btn" onclick="verifyEmail();">Verify Email</p>
+                        <div class="form-group ms-4 me-4 mt-1 pt-1">
+                            <input id="v_code" type="text" placeholder="Enter your code for varification."
+                                class="form-control">
                         </div>
                         <!-- Button -->
                         <div class="d-flex justify-content-center mt-3">
                             <div class="d-grid col-6 mx-auto">
-                                <button class="login_btn btn btn-primary">
-                                    Verify Email
+                                <button id="btn" onclick="studentSignup();" class="login_btn btn btn-primary">
+                                    Proceed
                                 </button>
                             </div>
                         </div>
@@ -43,15 +49,13 @@
                         <div class="reg-text mt-4 text-end me-4">
                             <span>If you are already a student <a href="student_login.php">click here</a></span>
                         </div>
-                        <!-- Message Text -->
-                        <div class="col-12 mt-5">
-                            <p id="message" class="text-center text-info">hello</p>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="js/student.js"></script>
 </body>
 
 </html>

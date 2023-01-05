@@ -11,27 +11,28 @@ use PHPMailer\PHPMailer\PHPMailer;
 if(!empty($_GET["e"])) {
     $email = $_GET["e"];
 
-    $l_code = uniqid();
+    // $l_code = uniqid();
     $username = "user". uniqid();
     $password = uniqid();
+	$index_no = random_int(100000, 999999);
 
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "Enter a valid email address";
 
     } else {
-		$rs = Database::search("SELECT * FROM `teacher` WHERE `email` = '" . $email . "' ");
-        $rs_num = $rs->num_rows;
+		$rs = Database::search("SELECT * FROM `student` WHERE `email` = '" . $email . "' ");
+		$rs_num = $rs->num_rows;
 		if ($rs_num == 1) {
 			echo "Already has sent a request";
 		} else {
-			Database::iud("INSERT INTO `teacher` (`email`,`user_name`, `password`, `login_code`, `role`, `verified`) 
-			VALUES ('" . $email . "', '" .$username . "', '" . $password . "', '" . $l_code . "', 'Teacher', '0')");
+			Database::iud("INSERT INTO `student` (`email`,`user_name`, `password`, `login_code`, `role`, `index_no`) 
+			VALUES ('" . $email . "', '" .$username . "', '" . $password . "', '', 'Student', '" . $index_no . "' )");
 
 			$mail = new PHPMailer;
 			$mail->IsSMTP();
 			$mail->Host = 'smtp.gmail.com';
 			$mail->SMTPAuth = true;
-			$mail->Username = 'gihan.code.test@gmail.com.com';
+			$mail->Username = 'gihan.code.test@gmail.com';
 			$mail->Password = 'didgixiqzjjdcnbv';
 			$mail->SMTPSecure = 'ssl';
 			$mail->Port = 465;
@@ -39,7 +40,7 @@ if(!empty($_GET["e"])) {
 			$mail->addReplyTo('gihan.code.test@gmail.com', 'Login Code');
 			$mail->addAddress($email);
 			$mail->isHTML(true);
-			$mail->Subject = 'Login code for the Teacher to use the system';
+			$mail->Subject = 'Login code for the Student to use the system';
 			$bodyContent = ' 
 
 		<body style="background-color:#d5f4e6">
@@ -75,8 +76,8 @@ if(!empty($_GET["e"])) {
 							<p style="font-weight: bolder;font-size: 42px;
 									letter-spacing: 0.025em;
 									color:black;">
-								Hello Teacher!
-								<br> Your Verification Code Details
+								Hello Student !
+								<br> Your Verification Details
 							</p>
 						</td>
 					</tr>
@@ -91,11 +92,12 @@ if(!empty($_GET["e"])) {
 							<h2 style="text-align: left;
 									align-items: center;">
 								Welcome to the student management system 2023.
-								As the Teacher you have the learning management in the system.
+								You will be registered as a new student in the system.
 						</h2>
 						<h4>Your Username is ' .$username. '</h4>
 						<h4>Your Password is ' .$password. '</h4>
 						<h4>Your Login Code is ' .$l_code. '</h4>
+						<h4 style="color: red;" >Your Index Number is ' .$index_no. '</h4>
 							<p class="data"
 							style="text-align: justify-all;
 									align-items: center;
@@ -104,8 +106,7 @@ if(!empty($_GET["e"])) {
 								Go to the student management system on the internet for more information and 
 								for the easy aceess....
 							</p>
-							<h4 style="color: #f7786b">Your Login Code will expire after each login. You will have to request
-							new code as everytime you login to the system.</h4>
+							<h4 style="color: #f7786b">NOTE: Use username and the password to login to the system for future.</h4>
 							<p>Thank You</p>
 						</td>
 					</tr>

@@ -37,6 +37,7 @@ function login_ac_officer () {
     req.onreadystatechange = function () {
         if(req.readyState == 4) {
             let t = req.responseText;
+            alert(t);
             if (t == "success") {
                 window.location = "academic_officer_panel.php";
             }
@@ -135,4 +136,26 @@ function change_password () {
 
     req.open("POST", "public/ChangePasswrodAcOfficerProcess.php", true);
     req.send(form);
+}
+
+// Send request To Student
+
+function sendRequest () {
+    const student_email = document.getElementById("email");
+
+    const req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if(req.readyState == 4) {
+            let t = req.responseText;
+            alert(t);
+            if (t == "success") {
+                alert("Request sent successfully");
+                window.location.reload();
+            }
+        }
+    }
+
+    req.open("GET", "public/studentSignupProcess.php?e=" + student_email.value , true);
+    req.send();
 }
