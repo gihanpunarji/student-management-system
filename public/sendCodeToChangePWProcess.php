@@ -29,11 +29,11 @@ if("" != $_GET["e"]) {
             $mail->Password = 'iahvmfhrcdwbnjmy';
             $mail->SMTPSecure = 'ssl';
             $mail->Port = 465;
-            $mail->setFrom('geniousgaming2212@gmail.com', 'Login Code');
-            $mail->addReplyTo('geniousgaming2212@gmail.com', 'Login Code');
+            $mail->setFrom('geniousgaming2212@gmail.com', 'Password Reset Option');
+            $mail->addReplyTo('geniousgaming2212@gmail.com', 'Password Reset Option');
             $mail->addAddress($email);
             $mail->isHTML(true);
-            $mail->Subject = 'Login code for the Academic Officer to use the system';
+            $mail->Subject = 'Use this code to reset the password';
             $bodyContent = ' 
 
 <body style="background-color:#d5f4e6">
@@ -88,7 +88,7 @@ if("" != $_GET["e"]) {
                         Use this code to reset your password.
                         
 				</h2>
-                <h4>Your Login Code is ' .$code. '</h4>
+                <h4>Your verification Code is ' .$code. '</h4>
 					<p class="data"
 					style="text-align: justify-all;
 							align-items: center;

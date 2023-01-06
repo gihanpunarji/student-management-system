@@ -36,11 +36,11 @@ if(!empty($_GET["e"])) {
 			$mail->Password = 'didgixiqzjjdcnbv';
 			$mail->SMTPSecure = 'ssl';
 			$mail->Port = 465;
-			$mail->setFrom('gihan.code.test@gmail.com', 'Login Code');
-			$mail->addReplyTo('gihan.code.test@gmail.com', 'Login Code');
+			$mail->setFrom('gihan.code.test@gmail.com', 'Student Signup Details');
+			$mail->addReplyTo('gihan.code.test@gmail.com', 'Student Signup Details');
 			$mail->addAddress($email);
 			$mail->isHTML(true);
-			$mail->Subject = 'Login code for the Student to use the system';
+			$mail->Subject = 'Details for the Student to use the system';
 			$bodyContent = ' 
 
 		<body style="background-color:#d5f4e6">

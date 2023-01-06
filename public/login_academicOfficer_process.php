@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require "../db/connection.php";
 
 if(empty($_POST['u_name'])) {
@@ -15,6 +16,7 @@ if(empty($_POST['u_name'])) {
 
     if($ac_num == 1) {
         $ac_data = $ac_rs->fetch_assoc();
+        $_SESSION["ac_officer"] = $ac_data;
         echo "success";
     } else {
         echo "Invalid Credentials";

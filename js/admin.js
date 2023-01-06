@@ -127,3 +127,23 @@ function save_profile () {
     req.open("POST", "public/saveProfileProcessAdmin.php", true);
     req.send(form);
 }
+
+// Log out
+
+function logout () {
+
+    const req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if(req.readyState == 4) {
+            let t = req.responseText;
+            alert(t);
+            if (t == "success") {
+                window.location = "admin_login.php";
+            }
+        }
+    }
+
+    req.open("GET", "public/signoutAdmin.php", true);
+    req.send();
+}

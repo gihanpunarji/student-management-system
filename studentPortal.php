@@ -1,5 +1,6 @@
 <?php
 require "db/connection.php";
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -25,20 +26,24 @@ require "db/connection.php";
         <div class="row">
             <?php 
 
-            $student_rs = Database::search("SELECT * FROM `student` WHERE `email` = 'gihanpunarji@gmail.com'");
+            $student_rs = Database::search("SELECT * FROM `student` WHERE `email` = '" . $_SESSION["student"]["email"] . "'");
             $student_data = $student_rs->fetch_assoc();
 
             ?>
             <div class="col-md-2 vh-100 bg-dark d-none d-md-block">
                 <div class="col-12">
                     <h3 class="text-white mt-2 ">SMS</h3>
+                    <div class="profile-img me-3">
+                        <img src="resources/user.png" onclick="gotoStudentProfile()">
+                    </div>
                     <div class="d-flex align-items-center mt-4">
-                        <div class="profile-img me-3">
-                            <img src="resources/user.png" onclick="gotoStudentProfile()">
-                        </div>
                         <div class="d-flex flex-column text-white">
-                            <span><?php echo $student_data['first_name'] . " " . $student_data['last_name']; ?></span>
-                            <span class="email"><?php echo $student_data['email']; ?></span>
+                            <span> <?php if (empty($student_data["first_name"]) || empty($student_data["last_name"]) ) {
+                                echo $student_data["user_name"];
+                            } else {
+                                echo $student_data["first_name"] . " " . $student_data["last_name"];
+                            } ?></span>
+                            <span class="email"><?php echo $student_data["email"] ?></span>
                         </div>
                     </div>
                     <div class="row dashboard">
@@ -84,8 +89,12 @@ require "db/connection.php";
             <div class="col-md-10 panel">
                 <div class="row">
                     <div class="col-12 d-flex justify-content-between">
-                        <h3 class="welcome">Welcome Student, Gihan Punarji</h3>
-                        <div class="btn btn-sm btn-secondary mt-1 mb-1">Log Out</div>
+                        <h3 class="welcome">Welcome Student, <?php if (empty($student_data["first_name"]) || empty($student_data["last_name"]) ) {
+                                echo $student_data["user_name"];
+                            } else {
+                                echo $student_data["first_name"] . " " . $student_data["last_name"];
+                            } ?></h3>
+                        <div class="btn btn-sm btn-secondary mt-1 mb-1" onclick="logout();">Log Out</div>
                     </div>
                     <hr>
                 </div>
@@ -239,6 +248,8 @@ require "db/connection.php";
     </script>
     <script src="js/admin.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/student.js"></script>
+
 
 </body>
 

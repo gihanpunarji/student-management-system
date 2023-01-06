@@ -11,7 +11,7 @@ function teacher_signup () {
         if(req.readyState == 4) {
             let t = req.responseText;
             if (t == "success") {
-                window.location = "teachersPanel.php";
+                window.location = "teacher_login.php";
             }
         }
     }
@@ -79,4 +79,24 @@ function save_profile () {
 
     req.open("POST", "public/saveProfileProcessTeacher.php", true);
     req.send(form);
+}
+
+// Log out
+
+function logout () {
+
+    const req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if(req.readyState == 4) {
+            let t = req.responseText;
+            alert(t);
+            if (t == "success") {
+                window.location = "teacher_login.php";
+            }
+        }
+    }
+
+    req.open("GET", "public/signoutTeacher.php", true);
+    req.send();
 }

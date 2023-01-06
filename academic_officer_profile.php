@@ -9,15 +9,23 @@ if(isset($_SESSION["ac_officer"])) {
 <!DOCTYPE html>
 <html lang="en">
 
+<?php 
+
+            $ac_rs = Database::search("SELECT * FROM `academic_officer` WHERE `email` = '" . $_SESSION["ac_officer"]["email"] . "'");
+            $ac_data = $ac_rs->fetch_assoc();
+
+
+            ?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php if (empty($_SESSION["ac_officer"]["first_name"]) || empty($_SESSION["ac_officer"]["first_name"]) ) {
-                    echo $_SESSION["ac_officer"]["user_name"];
-                } else {
-                    echo $_SESSION["ac_officer"]["first_name"] . " " . $_SESSION["ac_officer"]["last_name"];
-                } ?>
+    <title><?php if (empty($ac_data["first_name"]) || empty($ac_data["first_name"]) ) {
+                                echo $ac_data["user_name"];
+                            } else {
+                                echo $ac_data["first_name"] . " " . $ac_data["last_name"];
+                            } ?>
     </title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="css/background.css">
@@ -86,10 +94,6 @@ if(isset($_SESSION["ac_officer"])) {
                 </div>
             </div>
             <div class="col-md-8">
-                <?php 
-                $ac_rs = Database::search("SELECT * FROM `academic_officer` WHERE `user_name` = '" . $_SESSION["ac_officer"]["user_name"] . "' ");
-                $ac_data = $ac_rs->fetch_assoc();
-                ?>
                 <div class="row">
                     <div class="col-md-6">
                         <label>Academic Officer ID</label>

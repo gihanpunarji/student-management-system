@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require "../db/connection.php";
 
 if(empty($_POST['u_name'])) {
@@ -17,6 +18,7 @@ if(empty($_POST['u_name'])) {
 
     if($student_num == 1) {
         $student_data = $student_rs->fetch_assoc();
+        $_SESSION["student"] = $student_data;
         echo "success";
     } else {
         echo "Invalid Credentials";

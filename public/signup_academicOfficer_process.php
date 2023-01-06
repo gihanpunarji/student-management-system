@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 require "../db/connection.php";
 
 if(empty($_POST["u_name"])) {
@@ -19,9 +18,7 @@ if(empty($_POST["u_name"])) {
     $ac_num = $ac_rs->num_rows;
 
     if($ac_num == 1) {
-        $ac_data = $ac_rs->fetch_assoc();
         echo "success";
-        $_SESSION["ac_officer"] = $ac_data;
         Database::iud("UPDATE `academic_officer` SET `login_code` = ' ' WHERE `user_name` = '" . $user_name . "' ");
     } else {
         echo "Invalid Credentials";

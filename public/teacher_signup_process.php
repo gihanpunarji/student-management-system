@@ -31,15 +31,15 @@ if(!empty($_GET["e"])) {
 			$mail->IsSMTP();
 			$mail->Host = 'smtp.gmail.com';
 			$mail->SMTPAuth = true;
-			$mail->Username = 'gihan.code.test@gmail.com.com';
+			$mail->Username = 'gihan.code.test@gmail.com';
 			$mail->Password = 'didgixiqzjjdcnbv';
 			$mail->SMTPSecure = 'ssl';
 			$mail->Port = 465;
-			$mail->setFrom('gihan.code.test@gmail.com', 'Login Code');
-			$mail->addReplyTo('gihan.code.test@gmail.com', 'Login Code');
+			$mail->setFrom('gihan.code.test@gmail.com', 'Details for the teacher');
+			$mail->addReplyTo('gihan.code.test@gmail.com', 'Details for the teacher');
 			$mail->addAddress($email);
 			$mail->isHTML(true);
-			$mail->Subject = 'Login code for the Teacher to use the system';
+			$mail->Subject = 'Details for the Teacher to use the system';
 			$bodyContent = ' 
 
 		<body style="background-color:#d5f4e6">

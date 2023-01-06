@@ -10,8 +10,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 if ("" != $_POST["email"]) {
     $email = $_POST["email"];
-    $rs = Database::search("SELECT * FROM `student` WHERE `email` = '" . $_POST["email"] . "' ");
-    if($rs == 1) {
+    $rs = Database::search("SELECT * FROM `student` WHERE `email` = '" . $email . "' ");
+	$rs_num = $rs->num_rows;
+    if($rs_num == 1) {
         $code = random_int(100000, 999999);
             Database::iud("UPDATE `student` SET `login_code` = '".$code."' WHERE `email` = '".$email."' ");
 
@@ -28,7 +29,7 @@ if ("" != $_POST["email"]) {
             $mail->addReplyTo('gihan.code.test@gmail.com', 'Login Code');
             $mail->addAddress($email);
             $mail->isHTML(true);
-            $mail->Subject = 'Login code for the Admin to use the system';
+            $mail->Subject = 'Login code for the Student to verify the account';
             $bodyContent = ' 
 
 <body style="background-color:#d5f4e6">
@@ -104,7 +105,7 @@ if ("" != $_POST["email"]) {
                 echo "Verification code send failed";
             } else {
                 echo "Email has sent to your inbox!";
-                echo "success";
+                // echo "success";
             }
     } else {
         echo "No user found!";

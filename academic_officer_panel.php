@@ -25,6 +25,15 @@ if(isset($_SESSION["ac_officer"])) {
 
 <body>
 
+    <?php 
+
+            $ac_rs = Database::search("SELECT * FROM `academic_officer` WHERE `email` = '" . $_SESSION["ac_officer"]["email"] . "'");
+            $ac_data = $ac_rs->fetch_assoc();
+
+            $teacher_rs = Database::search("SELECT * FROM `teacher`");
+            $teacher_num = $teacher_rs->num_rows;
+
+            ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2 vh-100 bg-dark d-none d-md-block">
@@ -37,12 +46,12 @@ if(isset($_SESSION["ac_officer"])) {
                     </div>
                     <div class="d-flex align-items-center mt-4">
                         <div class="d-flex flex-column text-white">
-                            <span onclick="gotoAccOffProfile()" class="link"><?php if (empty($_SESSION["ac_officer"]["first_name"]) || empty($_SESSION["ac_officer"]["first_name"]) ) {
-                                echo $_SESSION["ac_officer"]["user_name"];
+                            <span onclick="gotoAccOffProfile()" class="link"><?php if (empty($ac_data["first_name"]) || empty($ac_data["first_name"]) ) {
+                                echo $ac_data["user_name"];
                             } else {
-                                echo $_SESSION["ac_officer"]["first_name"] . " " . $_SESSION["ac_officer"]["last_name"];
+                                echo $ac_data["first_name"] . " " . $ac_data["last_name"];
                             } ?></span>
-                            <span class="email"><?php echo $_SESSION["ac_officer"]["email"] ?></span>
+                            <span class="email"><?php echo $ac_data["email"] ?></span>
                         </div>
                     </div>
                     <div class="row dashboard">
@@ -67,12 +76,12 @@ if(isset($_SESSION["ac_officer"])) {
             <div class="col-md-10 panel">
                 <div class="row">
                     <div class="col-12 d-flex justify-content-between">
-                        <h3 class="welcome">Welcome Academic Officer, <?php if (empty($_SESSION["ac_officer"]["first_name"]) || empty($_SESSION["ac_officer"]["first_name"]) ) {
-                                echo $_SESSION["ac_officer"]["user_name"];
+                        <h3 class="welcome">Welcome Academic Officer, <?php if (empty($ac_data["first_name"]) || empty($ac_data["first_name"]) ) {
+                                echo $ac_data["user_name"];
                             } else {
-                                echo $_SESSION["ac_officer"]["first_name"] . " " . $_SESSION["ac_officer"]["last_name"];
+                                echo $ac_data["first_name"] . " " . $ac_data["last_name"];
                             } ?></h3>
-                        <div class="btn btn-sm btn-secondary mt-1 mb-1">Log Out</div>
+                        <div class="btn btn-sm btn-secondary mt-1 mb-1" onclick="logout();">Log Out</div>
                     </div>
                     <hr>
                 </div>
@@ -96,7 +105,9 @@ if(isset($_SESSION["ac_officer"])) {
                                 </div>
                                 <div class="col-6 col-md-3">
                                     <span class="ps-3">Total Teachers</span><br>
-                                    <span class="ps-3">100</span><br>
+                                    <span class="ps-3">
+                                        <?php echo $teacher_num ?>
+                                    </span><br>
 
                                 </div>
                             </div>

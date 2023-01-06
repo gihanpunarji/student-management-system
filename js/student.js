@@ -33,7 +33,7 @@ function studentSignup () {
         let t = req.responseText;
         alert(t);
             if (t == "success") {
-                window.location = "studentPortal.php";
+                window.location = "student_login.php";
             }
        }
     }
@@ -72,4 +72,54 @@ function studentLogin () {
 
     req.open("POST", "public/login_student_process.php", true);
     req.send(form);
+}
+
+// Save Profile
+
+function saveProfile () {
+    const f_name = document.getElementById("f_name");
+    const l_name = document.getElementById("l_name");
+    const mobile = document.getElementById("mobile");
+    const address = document.getElementById("address");
+
+    const req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if(req.readyState == 4) {
+            let t = req.responseText;
+            if (t == "success") {
+                window.location.reload();
+            }
+        }
+    } 
+
+    const form = new FormData();
+
+    form.append("f_name", f_name.value);
+    form.append("l_name", l_name.value);
+    form.append("mobile", mobile.value);
+    form.append("address", address.value);
+
+    req.open("POST", "public/saveProfileProcessStudent.php", true);
+    req.send(form);
+}
+
+// Log out
+
+function logout () {
+
+    const req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if(req.readyState == 4) {
+            let t = req.responseText;
+            alert(t);
+            if (t == "success") {
+                window.location = "student_login.php";
+            }
+        }
+    }
+
+    req.open("GET", "public/signoutStudent.php", true);
+    req.send();
 }

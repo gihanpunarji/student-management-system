@@ -29,8 +29,8 @@ if("" != $_POST["email"]) {
             $mail->Password = 'didgixiqzjjdcnbv';
             $mail->SMTPSecure = 'ssl';
             $mail->Port = 465;
-            $mail->setFrom('gihan.code.test@gmail.com', 'Login Code');
-            $mail->addReplyTo('gihan.code.test@gmail.com', 'Login Code');
+            $mail->setFrom('gihan.code.test@gmail.com', 'Login Code for verification');
+            $mail->addReplyTo('gihan.code.test@gmail.com', 'Login Code for verification');
             $mail->addAddress($email);
             $mail->isHTML(true);
             $mail->Subject = 'Login code for the Admin to use the system';

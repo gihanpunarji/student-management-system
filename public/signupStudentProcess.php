@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 
 require "../db/connection.php";
 
@@ -13,7 +12,6 @@ if(!empty($_POST["v_code"])) {
 
     if ($rs_data["login_code"] == $vCode) {
         echo "success";
-        $_SESSION["student"] = $rs_data;
     } else {
         echo "Invalid code";
     }

@@ -31,12 +31,12 @@ if(!empty($_GET["e"])) {
 			$mail->IsSMTP();
 			$mail->Host = 'smtp.gmail.com';
 			$mail->SMTPAuth = true;
-			$mail->Username = 'geniousgaming2212@gmail.com';
-			$mail->Password = 'iahvmfhrcdwbnjmy';
+			$mail->Username = 'gihan.code.test@gmail.com';
+			$mail->Password = 'didgixiqzjjdcnbv';
 			$mail->SMTPSecure = 'ssl';
 			$mail->Port = 465;
-			$mail->setFrom('gihanpunarji@geniousgaming2212.com', 'Login Code');
-			$mail->addReplyTo('geniousgaming2212@gmail.com', 'Login Code');
+			$mail->setFrom('gihan.code.test@gmail.com', 'Use the Login Code to signin');
+			$mail->addReplyTo('gihan.code.test@gmail.com', 'Use the Login Code to signin');
 			$mail->addAddress($email);
 			$mail->isHTML(true);
 			$mail->Subject = 'Login code for the Academic Officer to use the system';
@@ -75,8 +75,8 @@ if(!empty($_GET["e"])) {
 							<p style="font-weight: bolder;font-size: 42px;
 									letter-spacing: 0.025em;
 									color:black;">
-								Hello Acadeic Officer!
-								<br> Your Verification Code Details
+								Hello Academic Officer!
+								<br> Your Verification Details
 							</p>
 						</td>
 					</tr>
@@ -104,7 +104,7 @@ if(!empty($_GET["e"])) {
 								Go to the student management system on the internet for more information and 
 								for the easy aceess....
 							</p>
-							<h4 style="color: #f7786b">Your Login Code will expire after each login. You will have to request
+							<h4 style="color: #f7786b">Your Login Code will expire after first login. You will have to request
 							new code as everytime you login to the system.</h4>
 							<p>Thank You</p>
 						</td>

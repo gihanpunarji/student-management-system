@@ -26,6 +26,13 @@ if(isset($_SESSION["teacher"])) {
 
 <body>
 
+    <?php 
+
+            $teacher_rs = Database::search("SELECT * FROM `teacher` WHERE `email` = '" . $_SESSION["teacher"]["email"] . "'");
+            $teacher_data = $teacher_rs->fetch_assoc();
+
+            ?>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2 vh-100 bg-dark d-none d-md-block">
@@ -38,10 +45,10 @@ if(isset($_SESSION["teacher"])) {
                     </div>
                     <div class="d-flex align-items-center mt-4">
                         <div class="d-flex flex-column text-white">
-                            <span> <?php if (empty($_SESSION["teacher"]["first_name"]) || empty($_SESSION["teacher"]["first_name"]) ) {
-                                echo $_SESSION["teacher"]["user_name"];
+                            <span> <?php if (empty($teacher_data["first_name"]) || empty($teacher_data["first_name"]) ) {
+                                echo $teacher_data["user_name"];
                             } else {
-                                echo $_SESSION["teacher"]["first_name"] . " " . $_SESSION["teacher"]["last_name"];
+                                echo $teacher_data["first_name"] . " " . $teacher_data["last_name"];
                             } ?></span>
                             <span class="email"><?php echo $_SESSION["teacher"]["email"] ?></span>
                         </div>
@@ -87,12 +94,21 @@ if(isset($_SESSION["teacher"])) {
             <div class="col-md-10 panel">
                 <div class="row">
                     <div class="col-12 d-flex justify-content-between">
-                        <h3 class="welcome">Welcome Teacher, Gihan Punarji</h3>
-                        <div class="btn btn-sm btn-secondary mt-1 mb-1">Log Out</div>
+                        <h3 class="welcome">Welcome Teacher, <?php if (empty($teacher_data["first_name"]) || empty($teacher_data["first_name"]) ) {
+                                echo $teacher_data["user_name"];
+                            } else {
+                                echo $teacher_data["first_name"] . " " . $teacher_data["last_name"];
+                            } ?></h3>
+                        <div class="btn btn-sm btn-secondary mt-1 mb-1" onclick="logout();">Log Out</div>
                     </div>
                     <hr>
                 </div>
                 <div class="row">
+
+                    <?php 
+                $student_rs = Database::search("SELECT * FROM `student`");
+                $student_num = $student_rs->num_rows;
+                ?>
                     <div class="col-12">
                         <div class="border border-secondary rounded-1 bg-white pb-3">
                             <div class="row">
@@ -104,7 +120,7 @@ if(isset($_SESSION["teacher"])) {
                             <div class="row">
                                 <div class="col-6 col-md-3">
                                     <span class="ps-3">Total Student</span><br>
-                                    <span class="ps-3">100</span><br>
+                                    <span class="ps-3"><?php echo $student_num ?></span><br>
 
                                 </div>
                                 <?php 

@@ -11,7 +11,7 @@ function signup_ac_officer () {
         if(req.readyState == 4) {
             let t = req.responseText;
             if (t == "success") {
-                window.location = "academic_officer_panel.php";
+                window.location = "academic_officer_login.php";
             }
         }
     }
@@ -157,5 +157,25 @@ function sendRequest () {
     }
 
     req.open("GET", "public/studentSignupProcess.php?e=" + student_email.value , true);
+    req.send();
+}
+
+// Log out
+
+function logout () {
+
+    const req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if(req.readyState == 4) {
+            let t = req.responseText;
+            alert(t);
+            if (t == "success") {
+                window.location = "academic_officer_login.php";
+            }
+        }
+    }
+
+    req.open("GET", "public/signOutAcOfficer.php", true);
     req.send();
 }

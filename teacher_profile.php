@@ -8,14 +8,19 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 
+<?php 
+    $teacher_rs = Database::search("SELECT * FROM `teacher` WHERE `user_name` = '" . $_SESSION["teacher"]["user_name"] . "' ");
+    $teacher_data = $teacher_rs->fetch_assoc();
+    ?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php if (empty($_SESSION["teacher"]["first_name"]) || empty($_SESSION["teacher"]["first_name"]) ) {
-                    echo $_SESSION["teacher"]["user_name"];
+    <title><?php if (empty($teacher_data["first_name"]) || empty($teacher_data["first_name"]) ) {
+                    echo $teacher_data["user_name"];
                 } else {
-                    echo $_SESSION["teacher"]["first_name"] . " " . $_SESSION["teacher"]["last_name"];
+                    echo $teacher_data["first_name"] . " " . $teacher_data["last_name"];
                 } ?></title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="css/background.css">
@@ -50,10 +55,10 @@ session_start();
             <div class="col-md-6">
                 <div class="profile-head">
                     <h5>
-                        <?php if (empty($_SESSION["teacher"]["first_name"]) || empty($_SESSION["teacher"]["first_name"]) ) {
-                                echo $_SESSION["teacher"]["user_name"];
+                        <?php if (empty($teacher_data["first_name"]) || empty($teacher_data["first_name"]) ) {
+                                echo $teacher_data["user_name"];
                             } else {
-                                echo $_SESSION["teacher"]["first_name"] . " " . $_SESSION["teacher"]["last_name"];
+                                echo $teacher_data["first_name"] . " " . $teacher_data["last_name"];
                             } ?>
                     </h5>
                     <h6>
@@ -84,10 +89,6 @@ session_start();
                 </div>
             </div>
             <div class="col-md-8">
-                <?php 
-                $teacher_rs = Database::search("SELECT * FROM `teacher` WHERE `user_name` = '" . $_SESSION["teacher"]["user_name"] . "' ");
-                $teacher_data = $teacher_rs->fetch_assoc();
-                ?>
                 <div class="row">
                     <div class="col-md-6">
                         <label>Teacher ID</label>

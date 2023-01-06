@@ -35,6 +35,12 @@ $admin_data = $admin_rs->fetch_assoc();
 $ac_officer_rs = Database::search("SELECT * FROM `academic_officer` ");
 $ac_officer_num = $ac_officer_rs->num_rows;
 
+$student_rs = Database::search("SELECT * FROM `student` ");
+$student_num = $student_rs->num_rows;
+
+$ateacher_rs = Database::search("SELECT * FROM `teacher` ");
+$teacher_num = $ateacher_rs->num_rows;
+
 ?>
 
     <div class="container-fluid">
@@ -126,7 +132,7 @@ $ac_officer_num = $ac_officer_rs->num_rows;
                 <div class="row">
                     <div class="col-12 d-flex justify-content-between">
                         <h3 class="welcome">Welcome Admin, Gihan Punarji</h3>
-                        <div class="btn btn-sm btn-secondary mt-1 mb-1">Log Out</div>
+                        <div class="btn btn-sm btn-secondary mt-1 mb-1" onclick="logout();">Log Out</div>
                     </div>
                     <hr>
                 </div>
@@ -142,7 +148,7 @@ $ac_officer_num = $ac_officer_rs->num_rows;
                             <div class="row">
                                 <div class="col-6 col-md-3">
                                     <span class="ps-3">Total Student</span><br>
-                                    <span class="ps-3">100</span><br>
+                                    <span class="ps-3"><?php echo $student_num ?></span><br>
                                     <a class="ms-3 manage" href="#">Manage Students</a>
                                 </div>
                                 <div class="col-6 col-md-3">
@@ -152,7 +158,7 @@ $ac_officer_num = $ac_officer_rs->num_rows;
                                 </div>
                                 <div class="col-6 col-md-3">
                                     <span class="ps-3">Total Teachers</span><br>
-                                    <span class="ps-3">100</span><br>
+                                    <span class="ps-3"><?php echo $teacher_num ?></span><br>
                                     <a class="ms-3 manage" href="#">Manage Teachers</a>
                                 </div>
                                 <div class="col-6 col-md-3">
@@ -203,7 +209,7 @@ $ac_officer_num = $ac_officer_rs->num_rows;
                                         <img src="resources/user.png" alt="">
                                     </div>
                                     <div class="col-8">
-                                        <span>Send Invitation to a new Teacher Officer</span>
+                                        <span>Send Invitation to a new Teacher </span>
                                     </div>
                                 </div>
                                 <div class="row">
