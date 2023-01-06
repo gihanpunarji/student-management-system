@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+require "db/connection.php";
+
+if(isset($_SESSION["admin"])) {
+    $officer = $_SESSION["aid"];
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Teacher's Info</title>
+    <title>Edit Academic Officer Info</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
@@ -17,6 +25,11 @@
 
 <body style="background: #d4d0d0">
     <div class="container">
+
+        <?php 
+    $rs = Database::search("SELECT * FROM `academic_officer` WHERE `id` = '" . $officer["id"] . "'");
+    $rs_data = $rs->fetch_assoc();
+    ?>
         <div class="row">
             <div class="col-12 mt-4">
                 <h2 class="text-center">Manage Acedamic Officers's all details here </h2>
@@ -31,31 +44,47 @@
                     <div class="row teacher-details">
                         <div class="col-12">
                             <span>Id# : </span>
-                            <span>00001</span>
+                            <span><?php if($officer["id"] < 10) {
+                                echo "0". $officer["id"];
+                            } else {
+                                echo $officer["id"];
+                            } ?></span>
                         </div>
                     </div>
                     <div class="row teacher-details">
                         <div class="col-12">
                             <span>Name : </span>
-                            <span>Officer Name</span>
+                            <span><?php if (empty($rs_data["first_name"]) || empty($rs_data["first_name"]) ) {
+                                echo $rs_data["user_name"];
+                            } else {
+                                echo $rs_data["first_name"] . " " . $rs_data["last_name"];
+                            } ?></span>
                         </div>
                     </div>
                     <div class="row teacher-details">
                         <div class="col-12">
                             <span>Email : </span>
-                            <span>fficer101@gmail.com</span>
+                            <span><?php echo $rs_data["email"] ?></span>
                         </div>
                     </div>
                     <div class="row teacher-details">
                         <div class="col-12">
                             <span>Phone : </span>
-                            <span>071647894</span>
+                            <span><?php if(empty($rs_data["mobile"])) {
+                            echo "No number added yet.";
+                        } else {
+                            echo $rs_data["mobile"];
+                        } ?></span>
                         </div>
                     </div>
                     <div class="row teacher-details">
                         <div class="col-12">
                             <span>Status : </span>
-                            <span>Verified</span> &nbsp;<i class="fa-solid fa-check"></i>
+                            <span><?php if($rs_data["verified"] == 1) {
+                                echo 'Verified' . '&nbsp;' . '<i class="fa-solid fa-check"></i>';
+                            } else {
+                                echo "Not verified yet";
+                            } ?></span>
                         </div>
                     </div>
                 </div>
@@ -68,20 +97,25 @@
                 </div>
                 <div class="row">
                     <div class="border-border-secondary rounded-1 bg-white mt-3 pt-3 ps-4 pb-3 pe-3">
-                        <span>Teacher's Current Status : Verified</span><br><br>
+                        <span>Teacher's Current Status : <?php if($rs_data["status"] == 1) {
+                                echo 'Verified' . '&nbsp;' . '<i class="fa-solid fa-check"></i>';
+                            } else {
+                                echo "Not verified yet";
+                            } ?></span><br><br>
                         <span>Teachers Current Position : New</span><br><br>
                         <div class="col-12 d-flex justify-content-between">
-                            <span>Academic Officer's current status</span>
-                            <button class="btn btn-sm btn-primary">Active</button>
+                            <span>Academic rs_data's current status</span>
+                            <?php if($rs_data["status"] == 1) {
+                                 ?> <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(<?php echo $rs_data['id'] ?>);">Active</button> <?php
+                            } else {
+                                 ?> <button class="btn btn-sm btn-danger"
+                                onclick="changeStatus(<?php echo $rs_data['id'] ?>);">Blocked</button> <?php
+                            } ?>
                         </div>
 
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 mt-3">
-                <button class="btn w-100 btn-lg btn-outline-dark">Save Changes</button>
             </div>
         </div>
     </div>
@@ -93,3 +127,7 @@
 </body>
 
 </html>
+<?php
+}
+
+?>

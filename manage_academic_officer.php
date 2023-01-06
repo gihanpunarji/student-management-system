@@ -17,6 +17,15 @@
 
 <body>
     <div class="container">
+
+        <?php 
+
+    session_start();
+    require "db/connection.php";
+    $pageno;
+    $rs = Database::search("SELECT * FROM `academic_officer`");
+    $rs_num = $rs->num_rows;
+    ?>
         <div class="row">
             <div class="col-12">
                 <h2 class="text-center mt-4">Manage all academic officers</h2>
@@ -44,37 +53,89 @@
                     <hr>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 mt-3">
+
+            <?php
+
+            if (isset($_GET["page"])) {
+                $pageno = $_GET["page"];
+            } else {
+                $pageno = 1;
+            }
+
+            $resultsPerPage = 10;
+            $numberOfPages = ceil($rs_num / $resultsPerPage);
+
+            $page_results = ($pageno - 1) * $resultsPerPage;
+
+            $sel_rs = Database::search("SELECT * FROM `academic_officer` LIMIT "  . $resultsPerPage . " OFFSET " . $page_results . "");
+
+            $sel_num = $sel_rs->num_rows;
+
+            for ($i=0; $i < $sel_num; $i++) { 
+                $sel_data = $sel_rs->fetch_assoc();
+                ?>
+            <div class="row mt-3">
+                <div class="col-12">
                     <div class="d-flex justify-content-between">
                         <div class="col-8 col-md-8 d-flex justify-content-between">
-                            <span>00001</span>
-                            <span>ravindu sathsara</span>
-                            <span>ravi.123@gmail.com</span>
+                            <span><?php echo $sel_data["id"] ?></span>
+                            <span><?php if (empty($_SESSION["ac_officer"]["first_name"]) || empty($_SESSION["ac_officer"]["first_name"]) ) {
+                                echo $_SESSION["ac_officer"]["user_name"];
+                            } else {
+                                echo $sel_data["first_name"] . " " . $sel_data["last_name"];
+                            } ?></span>
+                            <span><?php echo $sel_data["email"] ?></span>
                         </div>
                         <div class="col-12 col-md-2">
-                            <span onclick="manageAcademicOfficerInfo()" class="edit">Manage</span>&nbsp;
-                            <span onclick="manageAcademicOfficerInfo()" class="edit"><i class="fa fa-pencil"></i></span>
+                            <span onclick="manageAcademicOfficerInfo(<?php echo $sel_data['id'] ?>)"
+                                class="edit">Manage</span>&nbsp;
+                            <span onclick="manageAcademicOfficerInfo(<?php echo $sel_data['id'] ?>)" class="edit"><i
+                                    class="fa fa-pencil"></i></span>
                         </div>
                     </div>
                 </div>
             </div>
+            <?php
+            }
+            ?>
+
 
             <!-- Pagination -->
             <div class="col-12 d-flex justify-content-center mt-3">
                 <nav aria-label="...">
                     <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><span
-                                    aria-hidden="true">&laquo;</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active" aria-current="page">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
                         <li class="page-item">
-                            <a class="page-link" href="#"><span aria-hidden="true">&raquo;</span></a>
+                            <a class="page-link" href="<?php if($pageno <= 1) {
+                                echo "#";
+                            } else {
+                                echo "?page=" . ($pageno - 1);
+                            } ?>"><span aria-hidden="true">&laquo;</span></a>
+                        </li>
+                        <?php 
+                        for ($i=1; $i < $numberOfPages; $i++) { 
+                            if ($i == $pageno) {
+                                ?>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="<?php echo "?page=" .($i); ?>">
+                                <?php echo $i; ?>
+                            </a>
+                        </li>
+                        <?php
+                            } else {
+                                ?>
+                        <li class="page-item"><a class="page-link" href="<?php echo "?page=" .($i); ?>">
+                                <?php echo $i; ?>
+                            </a></li>
+                        <?php
+                            }
+                        }
+                        ?>
+                        <li class="page-item">
+                            <a class="page-link" href="<?php if($pageno >= 1) {
+                                echo "#";
+                            } else {
+                                echo "?page=" . ($pageno + 1);
+                            } ?>"><span aria-hidden="true">&raquo;</span></a>
                         </li>
                     </ul>
                 </nav>
@@ -86,6 +147,8 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
     <script src="js/admin.js"></script>
+    <script src="js/main.js"></script>
+
 </body>
 
 </html>

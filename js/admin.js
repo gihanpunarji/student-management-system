@@ -147,3 +147,76 @@ function logout () {
     req.open("GET", "public/signoutAdmin.php", true);
     req.send();
 }
+
+// Manage Academic officer 
+
+function manageAcademicOfficerInfo (id) {
+    const req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if(req.readyState == 4) {
+            let t = req.responseText;
+            if (t == "success") {
+                window.location = "manage_academic_officer_info.php";
+            }
+        }
+    }
+
+    req.open("GET", "public/manage_academic_officer_process.php?id=" + id, true);
+    req.send();
+}
+
+// Change Academic Officer Status
+
+function changeStatus (id) {
+    const req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if(req.readyState == 4) {
+            let t = req.responseText;
+            if (t == "success") {
+                window.location.reload();
+            }
+        }
+    }
+
+    req.open("GET", "public/changeStatus.php?id=" + id, true);
+    req.send();
+}
+ 
+// Manage teacher
+
+function manageTeacherInfo (id) {
+    const req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if(req.readyState == 4) {
+            let t = req.responseText;
+            if (t == "success") {
+                window.location = "manage_teacher_info.php";
+            }
+        }
+    }
+
+    req.open("GET", "public/manage_teacher_process.php?id=" + id, true);
+    req.send();
+}
+
+// Change teacher Status
+
+function changeStatus2 (id) {
+    const req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if(req.readyState == 4) {
+            let t = req.responseText;
+            if (t == "success") {
+                window.location.reload();
+            }
+        }
+    }
+
+    req.open("GET", "public/changeStatus2.php?id=" + id, true);
+    req.send();
+}
+ 
